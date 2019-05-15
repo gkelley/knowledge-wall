@@ -1,0 +1,14 @@
+.upvoteContainer{
+    float: right;
+}
+.upvoteText {
+    padding: 5px;
+    font-size: 3vw;
+}
+.upvoteButton {
+    float: right;
+}
+.cardBackground{
+    background-color: white !important;
+    color: green;
+}
