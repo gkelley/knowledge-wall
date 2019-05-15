@@ -56,7 +56,8 @@ const getCardType = (type: biteType) => {
 };
 
 const Bite = (props: BiteProps) => {
-  const typeColor = { backgroundColor: getBackgroundColor(props.bite.type) };
+  console.log(props.bite);
+  const typeColor = { backgroundColor: props.bite ? getBackgroundColor(props.bite.type) : "#FDDDAA" };
   return (
     <Card>
       <CardHeader
