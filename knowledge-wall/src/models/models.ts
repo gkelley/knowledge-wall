@@ -20,12 +20,12 @@ export enum biteStatus {
 }
 
 export enum biteType {
-  Web,
-  Mobile,
-  Sharepoint,
-  Cms,
-  Rp,
-  Entrepreneurship
+  Web = 1,
+  Mobile = 2,
+  Sharepoint = 3,
+  Cms = 4,
+  Rp = 5,
+  Entrepreneurship = 6
 }
 
 export type commitment = {

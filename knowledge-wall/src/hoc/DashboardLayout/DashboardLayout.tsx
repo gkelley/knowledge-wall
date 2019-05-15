@@ -22,7 +22,7 @@ class DashboardLayout extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              Knowledge Wall [Dashboard]
+              Knowledge Wall
             </Typography>
           </Toolbar>
         </AppBar>
