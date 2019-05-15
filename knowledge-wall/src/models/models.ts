@@ -1,4 +1,9 @@
 export type bite = {
+  id: string,
+  biteData: biteData,
+}
+
+export type biteData = {
   title: string;
   description: string;
   type: biteType;

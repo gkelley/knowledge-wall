@@ -8,10 +8,11 @@ interface BiteProps {
 }
 
 const Bites = (props: BiteProps) => {
+  console.log("Bites: " + props.bites[0]);
   const bites =
     props.bites && props.bites.length > 0
       ? props.bites.map(bite => (
-          <Grid item xs={4}>
+          <Grid key={bite.id} item xs={4}>
             <Bite bite={bite} />
           </Grid>
         ))

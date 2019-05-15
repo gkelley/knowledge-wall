@@ -57,24 +57,24 @@ const getCardType = (type: biteType) => {
 
 const Bite = (props: BiteProps) => {
   console.log(props.bite);
-  const typeColor = { backgroundColor: props.bite ? getBackgroundColor(props.bite.type) : "#FDDDAA" };
+  const typeColor = { backgroundColor: props.bite ? getBackgroundColor(props.bite.biteData.type) : "#FDDDAA" };
   return (
     <Card>
       <CardHeader
         style={typeColor}
-        title={props.bite.title}
+        title={props.bite.biteData.title}
         action={
-          <Chip className={classes.cardBackground} label={getCardType(props.bite.type)}/>
+          <Chip className={classes.cardBackground} label={getCardType(props.bite.biteData.type)}/>
         }
       />
       <CardContent>
         <Typography>
-          {props.bite.description}
+          {props.bite.biteData.description}
         </Typography>
       </CardContent>
       <CardActions className={classes.upvoteContainer}>
         <Avatar>
-          <span>{props.bite.upvotes}</span>
+          <span>{props.bite.biteData.upvotes}</span>
         </Avatar>
         <IconButton className={classes.upvoteButton}>
           <ArrowUpward />

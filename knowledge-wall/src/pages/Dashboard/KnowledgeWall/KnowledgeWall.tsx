@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DashboardLayout from "../../../hoc/DashboardLayout/DashboardLayout";
-import { bite, biteStatus, biteType } from "../../../models/models";
+import { bite } from "../../../models/models";
 import Bites from "../../../components/Bites/Bites";
 import firebaseInstance from "../../../axios-firebase";
 
@@ -16,9 +16,11 @@ class KnowledgeWall extends Component {
     firebaseInstance
       .get("/bites.json")
       .then(response => {
-        //List of Keys
-        // console.log(Object.keys(response.data));
-        this.setState({ bites: Object.values(response.data) });
+        let transformedData = Object.keys(response.data).map(function (i) {
+          return {id: i, biteData: response.data[i]};
+        });
+        console.log(transformedData);
+        this.setState({ bites: transformedData });
       })
       .catch(error => {
         //Todo
@@ -26,20 +28,10 @@ class KnowledgeWall extends Component {
   }
 
   render() {
-    const mockBite: bite = {
-      title: "Dependency Injection",
-      description: "Why should I use DI in my next project?",
-      author: "Griffin Kelley",
-      commitment: null,
-      dateCreated: new Date(),
-      status: biteStatus.Active,
-      type: biteType.Web,
-      upvotes: 0
-    };
-    const mockBites = [mockBite, mockBite, mockBite, mockBite, mockBite];
+   
     return (
       <DashboardLayout>
-        { this.state.bites && (
+        { this.state.bites && this.state.bites.length > 0 && (
           <Bites bites={this.state.bites} />
         )}
       </DashboardLayout>
