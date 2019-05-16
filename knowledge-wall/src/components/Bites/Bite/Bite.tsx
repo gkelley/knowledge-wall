@@ -1,5 +1,5 @@
 import React from "react";
-import { bite, biteType } from "../../../models/models";
+import { bite, biteTypes } from "../../../models/models";
 import {
   Card,
   CardContent,
@@ -12,65 +12,27 @@ import {
 } from "@material-ui/core";
 import { ArrowUpward } from "@material-ui/icons";
 import classes from "./Bite.module.css";
+import Commitment from "../../Commitment/Commitment";
 
 interface BiteProps {
   bite: bite;
 }
 
-const getBackgroundColor = (type: biteType) => {
-  switch (type) {
-    case biteType.Web:
-      return "#ACE9DB";
-    case biteType.Mobile:
-      return "#B6E4C7";
-    case biteType.Cms:
-      return "#FDDDAA";
-    case biteType.Rp:
-      return "#EBBAB4";
-    case biteType.Entrepreneurship:
-      return "#B3D4EB";
-    case biteType.Sharepoint:
-      return "#DBBDE5";
-    default:
-      return "#f49ac2";
-  }
-};
-
-const getCardType = (type: biteType) => {
-  switch (type) {
-    case biteType.Web:
-      return "Web";
-    case biteType.Mobile:
-      return "Mobile";
-    case biteType.Cms:
-      return "CMS";
-    case biteType.Rp:
-      return "RP";
-    case biteType.Entrepreneurship:
-      return "Entr";
-    case biteType.Sharepoint:
-      return "SharePoint";
-    default:
-      return "Other";
-  }
-};
-
 const Bite = (props: BiteProps) => {
-  console.log(props.bite);
-  const typeColor = { backgroundColor: props.bite ? getBackgroundColor(props.bite.biteData.type) : "#FDDDAA" };
   return (
     <Card>
       <CardHeader
-        style={typeColor}
+        style={{ backgroundColor: biteTypes[props.bite.biteData.type].color }}
         title={props.bite.biteData.title}
         action={
-          <Chip className={classes.cardBackground} label={getCardType(props.bite.biteData.type)}/>
+          <Chip className={classes.cardBackground} label={biteTypes[props.bite.biteData.type].displayName}/>
         }
       />
       <CardContent>
         <Typography>
           {props.bite.biteData.description}
         </Typography>
+        {props.bite.biteData.commitment && <Commitment commitment={props.bite.biteData.commitment}/>}
       </CardContent>
       <CardActions className={classes.upvoteContainer}>
         <Avatar>
