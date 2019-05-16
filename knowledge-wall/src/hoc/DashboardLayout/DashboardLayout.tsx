@@ -4,6 +4,8 @@ import {
   Toolbar,
   IconButton,
   Typography,
+  Menu,
+  MenuItem
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import classes from "./DashboardLayout.module.css";
@@ -18,6 +20,7 @@ class DashboardLayout extends Component {
               className={classes.menuButton}
               color="inherit"
               aria-label="Menu"
+              href="/kiosk"
             >
               <MenuIcon />
             </IconButton>
@@ -26,9 +29,7 @@ class DashboardLayout extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <div className={classes.contentContainer}>
-          {this.props.children}
-        </div>
+        <div className={classes.contentContainer}>{this.props.children}</div>
       </React.Fragment>
     );
   }

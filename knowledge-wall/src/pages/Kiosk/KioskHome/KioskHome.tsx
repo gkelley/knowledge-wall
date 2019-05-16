@@ -3,16 +3,19 @@ import KioskLayout from "../../../hoc/KioskLayout/KioskLayout";
 import NewBiteForm from "../../../components/NewBiteForm/NewBiteForm";
 import { Button, Grid, Typography, withStyles, WithStyles } from "@material-ui/core";
 import styles from "./styles";
+import NewCommitmentForm from "../../../components/NewCommitmentForm/NewCommitmentForm";
 
 
 interface MyProps extends WithStyles {}
 interface KioskHomeState {
   learnFormOpen: boolean,
+  teachFormOpen: boolean,
 }
 class KioskHome extends Component<MyProps, KioskHomeState> {
 
   state: KioskHomeState = {
     learnFormOpen: false,
+    teachFormOpen: false,
   }
 
   handleLearnOpen = () => {
@@ -20,6 +23,13 @@ class KioskHome extends Component<MyProps, KioskHomeState> {
   };
   handleLearnClose = () => {
     this.setState({ learnFormOpen: false });
+  };
+
+  handleTeachOpen = () => {
+    this.setState({ teachFormOpen: true });
+  };
+  handleTeachClose = () => {
+    this.setState({ teachFormOpen: false });
   };
 
 
@@ -43,9 +53,10 @@ class KioskHome extends Component<MyProps, KioskHomeState> {
             <NewBiteForm open={this.state.learnFormOpen} handleClose={this.handleLearnClose}/>
           </Grid>
           <Grid item xs={3}>
-            <Button fullWidth variant="outlined" className={this.props.classes.button}>
+            <Button onClick={this.handleTeachOpen} fullWidth variant="outlined" className={this.props.classes.button}>
               Teach
             </Button>
+            <NewCommitmentForm open={this.state.teachFormOpen} handleClose={this.handleTeachClose}/>
           </Grid>
         </Grid>
       </KioskLayout>

@@ -11,7 +11,7 @@ import * as Yup from "yup";
 import { Form, Formik, Field } from "formik";
 import FormikTextField from "../shared/FormikTextFIeld";
 import firebaseInstance from "../../axios-firebase";
-import { biteData, biteStatus, biteTypes } from "../../models/models";
+import { biteData, biteStatus, biteTypes, commitment, commitmentStatus } from "../../models/models";
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()
@@ -23,26 +23,26 @@ const ValidationSchema = Yup.object().shape({
   type: Yup.number().required("Type is required"),
   author: Yup.string().max(50, "50 character max")
 });
-interface NewBiteFormProps {
+interface NewCommitmentFormProps {
   open: boolean;
   handleClose: () => void;
 }
 
-class NewBiteForm extends Component<NewBiteFormProps> {
+class NewCommitmentForm extends Component<NewCommitmentFormProps> {
   handleSubmit = (values: any) => {
-    let formData : biteData = {
-        title: values.title,
-        description: values.description,
-        author: values.author,
-        dateCreated: new Date(),
-        type: values.type,
-        upvotes: 0,
-        commitment: null,
-        status: biteStatus.Active,
+    let formData : {commitment: commitment} = {
+        commitment:{
+            author: "Griffin",
+            description: "I will talk",
+            format: 0,
+            dateCreated: new Date(),
+            expectedDate: undefined,
+            status: commitmentStatus.Incomplete 
+        }
     }
 
     firebaseInstance
-      .post("/bites.json", formData)
+      .patch("/bites/" +"-Lf1JP0DNfWLsZB-aTWs"+ ".json", formData)
       .then(response => {
         this.props.handleClose();
       })
@@ -107,4 +107,4 @@ class NewBiteForm extends Component<NewBiteFormProps> {
   }
 }
 
-export default NewBiteForm;
+export default NewCommitmentForm;

@@ -17,7 +17,7 @@ class KioskLayout extends Component {
             <IconButton
               className={classes.menuButton}
               color="inherit"
-              href="/kiosk"
+              href="/dashboard"
             >
               <Avatar src="https://media.licdn.com/dms/image/C4E0BAQEzidOHxvXPRQ/company-logo_200_200/0?e=2159024400&v=beta&t=REo20Yxby9OchMNIFNGiBQGNjMUUiGpg2XnqukMmkpk" />
             </IconButton>

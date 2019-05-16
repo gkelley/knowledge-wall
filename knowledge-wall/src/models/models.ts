@@ -84,7 +84,7 @@ export type commitment = {
   // formatTypes Id Number
   format: number;
   dateCreated: Date;
-  expectedDate: Date;
+  expectedDate?: Date;
   status: commitmentStatus;
 };
 
