@@ -32,7 +32,7 @@ const Bite = (props: BiteProps) => {
         <Typography>
           {props.bite.biteData.description}
         </Typography>
-        {props.bite.biteData.commitment && <Commitment commitment={props.bite.biteData.commitment}/>}
+        {props.bite.biteData.commitment && <Commitment color={biteTypes[props.bite.biteData.type].color} commitment={props.bite.biteData.commitment}/>}
       </CardContent>
       <CardActions className={classes.upvoteContainer}>
         <Avatar>
