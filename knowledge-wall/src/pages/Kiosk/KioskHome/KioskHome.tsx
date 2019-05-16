@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import KioskLayout from "../../../hoc/KioskLayout/KioskLayout";
-import CommitmentForm from "../../../components/CommitmentForm/CommitmentForm";
+import NewBiteForm from "../../../components/NewBiteForm/NewBiteForm";
 import { Button, Grid, Typography, withStyles, WithStyles } from "@material-ui/core";
 import styles from "./styles";
 
@@ -40,7 +40,7 @@ class KioskHome extends Component<MyProps, KioskHomeState> {
             <Button onClick={this.handleLearnOpen} fullWidth variant="outlined" className={this.props.classes.button}>
               Learn
             </Button>
-            <CommitmentForm open={this.state.learnFormOpen} handleClose={this.handleLearnClose}/>
+            <NewBiteForm open={this.state.learnFormOpen} handleClose={this.handleLearnClose}/>
           </Grid>
           <Grid item xs={3}>
             <Button fullWidth variant="outlined" className={this.props.classes.button}>
