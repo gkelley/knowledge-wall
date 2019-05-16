@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import KioskLayout from '../../../hoc/KioskLayout/KioskLayout';
+import CommitmentForm from '../../../components/CommitmentForm/CommitmentForm';
 
 class KioskHome extends Component {
     render() {
         return (
             <KioskLayout>
-                <h1>Kiosk Home</h1>
+                <CommitmentForm />
             </KioskLayout>
         );
     }

@@ -7,10 +7,42 @@ interface BiteProps {
   bites: bite[];
 }
 
+const sortBites = ( bites: bite[]) => {
+  var sorted =  bites.sort(function (biteA, biteB) {
+      let biteACommitment =  biteA.biteData.commitment != undefined; 
+      let biteBCommitment =  biteB.biteData.commitment != undefined; 
+      if (biteACommitment && biteBCommitment) {
+        if(biteA.biteData.upvotes >= biteB.biteData.upvotes){
+          return -1;
+        }
+        else{
+          return 1;
+        }
+      }
+      else if (!biteACommitment && !biteBCommitment) {
+        if(biteA.biteData.upvotes >= biteB.biteData.upvotes){
+          return -1;
+        }
+        else{
+          return 1;
+        }
+      }
+      else if(biteACommitment){
+        return -1;
+      }
+      else{
+        return 1;
+      }
+  });
+  return sorted;
+}
+
 const Bites = (props: BiteProps) => {
-  console.log("Bites: " + props.bites[0]);
+  let sortedBites = sortBites(props.bites);
+  console.log("Sorted");
+  console.log(sortedBites);
   const bites =
-    props.bites && props.bites.length > 0
+  sortedBites && sortedBites.length > 0
       ? props.bites.map(bite => (
           <Grid key={bite.id} item xs={4}>
             <Bite bite={bite} />
