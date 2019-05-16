@@ -26,7 +26,9 @@ class DashboardLayout extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        {this.props.children}
+        <div className={classes.contentContainer}>
+          {this.props.children}
+        </div>
       </React.Fragment>
     );
   }

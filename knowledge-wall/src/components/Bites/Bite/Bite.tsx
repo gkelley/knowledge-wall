@@ -32,7 +32,7 @@ const getBackgroundColor = (type: biteType) => {
     case biteType.Sharepoint:
       return "#DBBDE5";
     default:
-      return "#FDDDAA";
+      return "#f49ac2";
   }
 };
 

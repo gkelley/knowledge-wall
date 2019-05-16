@@ -50,7 +50,7 @@ const Bites = (props: BiteProps) => {
         ))
       : null;
   return (
-    <Grid style={{ paddingTop: "30px" }} container spacing={24}>
+    <Grid container spacing={40}>
       {bites}
     </Grid>
   );

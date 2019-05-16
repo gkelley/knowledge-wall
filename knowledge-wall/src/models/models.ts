@@ -25,7 +25,8 @@ export enum biteType {
   Sharepoint = 3,
   Cms = 4,
   Rp = 5,
-  Entrepreneurship = 6
+  Entrepreneurship = 6,
+  Other = 7
 }
 
 export type commitment = {
