@@ -6,7 +6,23 @@ import styles from "./styles";
 
 
 interface MyProps extends WithStyles {}
-class KioskHome extends Component<MyProps> {
+interface KioskHomeState {
+  learnFormOpen: boolean,
+}
+class KioskHome extends Component<MyProps, KioskHomeState> {
+
+  state: KioskHomeState = {
+    learnFormOpen: false,
+  }
+
+  handleLearnOpen = () => {
+    this.setState({ learnFormOpen: true });
+  };
+  handleLearnClose = () => {
+    this.setState({ learnFormOpen: false });
+  };
+
+
   render() {
     return (
       <KioskLayout>
@@ -21,9 +37,10 @@ class KioskHome extends Component<MyProps> {
           </Grid>
           <Grid item xs={3} />
           <Grid item xs={3}>
-            <Button fullWidth variant="outlined" className={this.props.classes.button}>
+            <Button onClick={this.handleLearnOpen} fullWidth variant="outlined" className={this.props.classes.button}>
               Learn
             </Button>
+            <CommitmentForm open={this.state.learnFormOpen} handleClose={this.handleLearnClose}/>
           </Grid>
           <Grid item xs={3}>
             <Button fullWidth variant="outlined" className={this.props.classes.button}>
