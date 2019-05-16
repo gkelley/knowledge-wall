@@ -6,7 +6,6 @@ import {
   Typography,
   Avatar,
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
 import classes from "./KioskLayout.module.css";
 
 class KioskLayout extends Component {

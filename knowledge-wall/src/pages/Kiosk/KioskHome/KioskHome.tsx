@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import KioskLayout from "../../../hoc/KioskLayout/KioskLayout";
 import CommitmentForm from "../../../components/CommitmentForm/CommitmentForm";
-import { Button, Grid, Typography, Paper, withStyles, WithStyles } from "@material-ui/core";
+import { Button, Grid, Typography, withStyles, WithStyles } from "@material-ui/core";
 import styles from "./styles";
 
 

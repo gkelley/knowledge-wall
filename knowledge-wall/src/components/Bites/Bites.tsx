@@ -9,8 +9,8 @@ interface BiteProps {
 
 const sortBites = ( bites: bite[]) => {
   var sorted =  bites.sort(function (biteA, biteB) {
-      let biteACommitment =  biteA.biteData.commitment != undefined; 
-      let biteBCommitment =  biteB.biteData.commitment != undefined; 
+      let biteACommitment =  biteA.biteData.commitment !== undefined; 
+      let biteBCommitment =  biteB.biteData.commitment !== undefined; 
       if (biteACommitment && biteBCommitment) {
         if(biteA.biteData.upvotes >= biteB.biteData.upvotes){
           return -1;
@@ -44,7 +44,7 @@ const Bites = (props: BiteProps) => {
   const bites =
   sortedBites && sortedBites.length > 0
       ? props.bites.map(bite => (
-          <Grid key={bite.id} item xs={4}>
+          <Grid key={bite.id} item xs={3}>
             <Bite bite={bite} />
           </Grid>
         ))

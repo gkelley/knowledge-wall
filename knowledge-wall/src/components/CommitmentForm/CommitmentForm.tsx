@@ -11,7 +11,7 @@ import * as Yup from "yup";
 import { Form, Formik, Field } from "formik";
 import FormikTextField from "../shared/FormikTextFIeld";
 import firebaseInstance from "../../axios-firebase";
-import { biteData, biteStatus } from "../../models/models";
+import { biteData, biteStatus, biteTypes } from "../../models/models";
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()
@@ -20,7 +20,7 @@ const ValidationSchema = Yup.object().shape({
   description: Yup.string()
     .required("Description is required")
     .max(255, "255 character max"),
-//   type: Yup.number().required("Type is required"),
+  type: Yup.number().required("Type is required"),
   author: Yup.string().max(50, "50 character max")
 });
 interface CommitmentFormProps {
@@ -35,7 +35,7 @@ class CommitmentForm extends Component<CommitmentFormProps> {
         description: values.description,
         author: values.author,
         dateCreated: new Date(),
-        type: 0,
+        type: values.type,
         upvotes: 0,
         commitment: null,
         status: biteStatus.Active,
@@ -52,6 +52,7 @@ class CommitmentForm extends Component<CommitmentFormProps> {
   };
 
   render() {
+    const biteTypeOptions = biteTypes.map((type, index) => (<option value={index}>{type.displayName}</option>) );
     return (
       <Dialog open={this.props.open} onClose={this.props.handleClose}>
         <DialogTitle>Create "Knowledge Bite"</DialogTitle>
@@ -84,6 +85,9 @@ class CommitmentForm extends Component<CommitmentFormProps> {
                   component={FormikTextField}
                   fullWidth
                 />
+                <Field name="type" component="select" placeholder="Category">
+                    {biteTypeOptions}
+                </Field>
                 <Field
                   name="author"
                   label="Name (Optional)"
