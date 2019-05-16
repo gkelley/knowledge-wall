@@ -4,6 +4,7 @@ import {
   Toolbar,
   IconButton,
   Typography,
+  Avatar,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import classes from "./KioskLayout.module.css";
@@ -12,14 +13,14 @@ class KioskLayout extends Component {
   render() {
     return (
       <React.Fragment>
-        <AppBar position="static" color="secondary">
+        <AppBar position="static" color="default">
           <Toolbar>
             <IconButton
               className={classes.menuButton}
               color="inherit"
-              aria-label="Menu"
+              href="/kiosk"
             >
-              <MenuIcon />
+              <Avatar src="https://media.licdn.com/dms/image/C4E0BAQEzidOHxvXPRQ/company-logo_200_200/0?e=2159024400&v=beta&t=REo20Yxby9OchMNIFNGiBQGNjMUUiGpg2XnqukMmkpk" />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               Knowledge Wall
