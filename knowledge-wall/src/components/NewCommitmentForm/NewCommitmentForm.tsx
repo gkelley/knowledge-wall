@@ -11,7 +11,7 @@ import * as Yup from "yup";
 import { Form, Formik, Field } from "formik";
 import FormikTextField from "../shared/FormikTextFIeld";
 import firebaseInstance from "../../axios-firebase";
-import { biteData, biteStatus, biteTypes, commitment, commitmentStatus } from "../../models/models";
+import { biteTypes, commitment, commitmentStatus } from "../../models/models";
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()

@@ -3,9 +3,7 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
-  Menu,
-  MenuItem
+  Typography,  
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import classes from "./DashboardLayout.module.css";
