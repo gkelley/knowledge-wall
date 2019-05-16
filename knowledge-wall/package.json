@@ -10,6 +10,7 @@
     "@types/react": "16.8.17",
     "@types/react-dom": "16.8.4",
     "@types/react-router-dom": "^4.3.3",
+    "@types/yup": "^0.26.13",
     "axios": "^0.18.0",
     "formik": "^1.5.4",
     "react": "^16.8.6",
