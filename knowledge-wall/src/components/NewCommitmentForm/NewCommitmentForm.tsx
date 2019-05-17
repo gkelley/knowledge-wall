@@ -11,7 +11,7 @@ import {
 import * as Yup from "yup";
 import { Form, Formik, Field } from "formik";
 import FormikTextField from "../shared/FormikTextFIeld";
-import firebaseInstance from "../../axios-firebase";
+import firebaseInstance, { GetAllBites } from "../../axios-firebase";
 import { commitment, commitmentStatus, formatTypes, bite } from "../../models/models";
 
 const ValidationSchema = Yup.object().shape({
@@ -42,33 +42,15 @@ class NewCommitmentForm extends Component<NewCommitmentFormProps, NewCommitmentS
 
   
   componentDidMount() {
-    firebaseInstance
-      .get("/bites.json")
-      .then(response => {
-        let transformedData = Object.keys(response.data).map(function (i) {
-          return {id: i, biteData: response.data[i]};
-        });
-        console.log(transformedData);
-        this.setState({ bites: transformedData });
-      })
-      .catch(error => {
-        //Todo
-      });
+    GetAllBites().then(response =>{
+      this.setState({"bites": response});
+    });
   }
 
   componentWillReceiveProps() {
-    firebaseInstance
-      .get("/bites.json")
-      .then(response => {
-        let transformedData = Object.keys(response.data).map(function (i) {
-          return {id: i, biteData: response.data[i]};
-        });
-        console.log(transformedData);
-        this.setState({ bites: transformedData });
-      })
-      .catch(error => {
-        //Todo
-      });
+    GetAllBites().then(response =>{
+      this.setState({"bites": response});
+    });
   }
 
   handleSubmit = (values: any) => {

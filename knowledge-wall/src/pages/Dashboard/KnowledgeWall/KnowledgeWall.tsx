@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import DashboardLayout from "../../../hoc/DashboardLayout/DashboardLayout";
 import { bite } from "../../../models/models";
 import Bites from "../../../components/Bites/Bites";
-import firebaseInstance from "../../../axios-firebase";
+import { GetAllBites } from "../../../axios-firebase";
 
 interface KnowledgeWallState {
   bites: bite[]
@@ -13,18 +13,9 @@ class KnowledgeWall extends Component {
   };
 
   componentDidMount() {
-    firebaseInstance
-      .get("/bites.json")
-      .then(response => {
-        let transformedData = Object.keys(response.data).map(function (i) {
-          return {id: i, biteData: response.data[i]};
-        });
-        console.log(transformedData);
-        this.setState({ bites: transformedData });
-      })
-      .catch(error => {
-        //Todo
-      });
+    GetAllBites().then(response =>{
+      this.setState({"bites": response});
+    });
   }
 
   render() {
