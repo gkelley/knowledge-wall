@@ -54,7 +54,7 @@ export const biteTypes = [
 export const formatTypes = [
   {
     displayName: "BFF",
-    image: "https://img.icons8.com/bubbles/50/000000/brain.png",
+    image: "https://img.icons8.com/color/48/000000/critical-thinking.png",
   },
   {
     displayName: "Lightning Talk",
