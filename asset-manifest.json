@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/knowledge-wall/static/css/main.5ac05754.chunk.css",
-    "main.js": "/knowledge-wall/static/js/main.dc83a197.chunk.js",
-    "main.js.map": "/knowledge-wall/static/js/main.dc83a197.chunk.js.map",
+    "main.js": "/knowledge-wall/static/js/main.722ca08f.chunk.js",
+    "main.js.map": "/knowledge-wall/static/js/main.722ca08f.chunk.js.map",
     "runtime~main.js": "/knowledge-wall/static/js/runtime~main.33987260.js",
     "runtime~main.js.map": "/knowledge-wall/static/js/runtime~main.33987260.js.map",
-    "static/js/2.9f8eea88.chunk.js": "/knowledge-wall/static/js/2.9f8eea88.chunk.js",
-    "static/js/2.9f8eea88.chunk.js.map": "/knowledge-wall/static/js/2.9f8eea88.chunk.js.map",
+    "static/js/2.f8401789.chunk.js": "/knowledge-wall/static/js/2.f8401789.chunk.js",
+    "static/js/2.f8401789.chunk.js.map": "/knowledge-wall/static/js/2.f8401789.chunk.js.map",
     "index.html": "/knowledge-wall/index.html",
-    "precache-manifest.ca0960f7b224df7ff1b880d92b078aca.js": "/knowledge-wall/precache-manifest.ca0960f7b224df7ff1b880d92b078aca.js",
+    "precache-manifest.c8642bc8abb97e585ade1a7c801efd2c.js": "/knowledge-wall/precache-manifest.c8642bc8abb97e585ade1a7c801efd2c.js",
     "service-worker.js": "/knowledge-wall/service-worker.js",
     "static/css/main.5ac05754.chunk.css.map": "/knowledge-wall/static/css/main.5ac05754.chunk.css.map"
   }
