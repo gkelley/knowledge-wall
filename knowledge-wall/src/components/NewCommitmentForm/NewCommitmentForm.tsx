@@ -40,7 +40,23 @@ class NewCommitmentForm extends Component<NewCommitmentFormProps, NewCommitmentS
     bites: [],
   }
 
+  
   componentDidMount() {
+    firebaseInstance
+      .get("/bites.json")
+      .then(response => {
+        let transformedData = Object.keys(response.data).map(function (i) {
+          return {id: i, biteData: response.data[i]};
+        });
+        console.log(transformedData);
+        this.setState({ bites: transformedData });
+      })
+      .catch(error => {
+        //Todo
+      });
+  }
+
+  componentWillReceiveProps() {
     firebaseInstance
       .get("/bites.json")
       .then(response => {
