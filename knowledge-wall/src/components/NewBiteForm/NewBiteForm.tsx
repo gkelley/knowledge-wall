@@ -20,7 +20,7 @@ const ValidationSchema = Yup.object().shape({
   description: Yup.string()
     .required("Description is required")
     .max(255, "255 character max"),
-  type: Yup.number().required("Type is required"),
+  type: Yup.number().required("Learning Category is required"),
   author: Yup.string().max(50, "50 character max")
 });
 interface NewBiteFormProps {
@@ -78,21 +78,36 @@ class NewBiteForm extends Component<NewBiteFormProps> {
                   label="Topic"
                   component={FormikTextField}
                   fullWidth
+                  variant="outlined"
+                  margin="normal" 
                 />
                 <Field
                   name="description"
                   label="Description"
                   component={FormikTextField}
+                  multiline
+                  rowsMax="4"
                   fullWidth
+                  variant="outlined"
+                  margin="normal" 
                 />
-                <Field name="type" component="select" placeholder="Category">
-                    {biteTypeOptions}
+                <Field 
+                 name="type"
+                 label="Category" 
+                 select="true" 
+                 variant="outlined" 
+                 margin="normal" 
+                 component={FormikTextField}
+                >
+                  {biteTypeOptions}
                 </Field>
                 <Field
                   name="author"
                   label="Name (Optional)"
                   component={FormikTextField}
                   fullWidth
+                  variant="outlined"
+                  margin="normal" 
                 />
                 <DialogActions>
                   <Button onClick={this.props.handleClose}>Cancel</Button>

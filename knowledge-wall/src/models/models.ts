@@ -27,7 +27,7 @@ export const biteTypes = [
   },
   {
     displayName: "Mobile",
-    color: "#B6E4C7"
+    color: "#abc2e8"
   },
   {
     displayName: "Entrepreneurship",

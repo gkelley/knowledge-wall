@@ -5,36 +5,62 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-  Button
+  Button,
+  InputLabel
 } from "@material-ui/core";
 import * as Yup from "yup";
 import { Form, Formik, Field } from "formik";
 import FormikTextField from "../shared/FormikTextFIeld";
 import firebaseInstance from "../../axios-firebase";
-import { biteTypes, commitment, commitmentStatus } from "../../models/models";
+import { commitment, commitmentStatus, formatTypes, bite } from "../../models/models";
 
 const ValidationSchema = Yup.object().shape({
-  title: Yup.string()
-    .required("Title is required")
-    .max(50, "50 character max"),
+  biteId: Yup.string()
+  .required("Topic is required"),
+  author: Yup.string()
+  .required("Name is required")
+  .max(50, "50 character max"),
   description: Yup.string()
     .required("Description is required")
     .max(255, "255 character max"),
-  type: Yup.number().required("Type is required"),
-  author: Yup.string().max(50, "50 character max")
+  format: Yup.number().required("Format is required"),
 });
 interface NewCommitmentFormProps {
   open: boolean;
   handleClose: () => void;
 }
 
-class NewCommitmentForm extends Component<NewCommitmentFormProps> {
+interface NewCommitmentState {
+  bites: bite[];
+}
+
+class NewCommitmentForm extends Component<NewCommitmentFormProps, NewCommitmentState> {
+
+  state : NewCommitmentState = {
+    bites: [],
+  }
+
+  componentDidMount() {
+    firebaseInstance
+      .get("/bites.json")
+      .then(response => {
+        let transformedData = Object.keys(response.data).map(function (i) {
+          return {id: i, biteData: response.data[i]};
+        });
+        console.log(transformedData);
+        this.setState({ bites: transformedData });
+      })
+      .catch(error => {
+        //Todo
+      });
+  }
+
   handleSubmit = (values: any) => {
     let formData : {commitment: commitment} = {
         commitment:{
-            author: "Griffin",
-            description: "I will talk",
-            format: 0,
+            author: values.author,
+            description: values.description,
+            format: values.format,
             dateCreated: new Date(),
             expectedDate: undefined,
             status: commitmentStatus.Incomplete 
@@ -42,7 +68,7 @@ class NewCommitmentForm extends Component<NewCommitmentFormProps> {
     }
 
     firebaseInstance
-      .patch("/bites/" +"-Lf1JP0DNfWLsZB-aTWs"+ ".json", formData)
+      .patch("/bites/" + values.biteId + ".json", formData)
       .then(response => {
         this.props.handleClose();
       })
@@ -52,20 +78,21 @@ class NewCommitmentForm extends Component<NewCommitmentFormProps> {
   };
 
   render() {
-    const biteTypeOptions = biteTypes.map((type, index) => (<option value={index}>{type.displayName}</option>) );
+    const formatTypeOptions = formatTypes.map((type, index) => (<option value={index}>{type.displayName}</option>) );
+    const postOptions = this.state.bites.map((bite) => (<option value={bite.id}>{bite.biteData.title}</option>) );
     return (
       <Dialog open={this.props.open} onClose={this.props.handleClose}>
-        <DialogTitle>Create "Knowledge Bite"</DialogTitle>
+        <DialogTitle>Commit to teaching a "Knowledge Bite"</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Post a "Bite" of information that you want to learn!
+            Teach your colleagues in what ever format you want.
           </DialogContentText>
           <Formik
             initialValues={{
-              title: "",
+              biteId: "",
+              author: "",
               description: "",
-              type: 0,
-              author: ""
+              format: 0,
             }}
             validationSchema={ValidationSchema}
             onSubmit={values => {
@@ -73,27 +100,45 @@ class NewCommitmentForm extends Component<NewCommitmentFormProps> {
             }}
             render={props => (
               <Form>
-                <Field
-                  name="title"
-                  label="Topic"
+                <Field 
+                  label="Topic" 
+                  select="true" 
+                  variant="outlined" 
+                  name="biteId" 
+                  margin="normal" 
+                  fullWidth
+                  component={FormikTextField} 
+                >
+                  {postOptions}
+                </Field>
+                 <Field
+                  name="author"
+                  label="Name"
                   component={FormikTextField}
                   fullWidth
+                  variant="outlined"
+                  margin="normal" 
                 />
                 <Field
                   name="description"
                   label="Description"
                   component={FormikTextField}
                   fullWidth
+                  multiline
+                  rowsMax="4"
+                  variant="outlined"
+                  margin="normal" 
                 />
-                <Field name="type" component="select" placeholder="Category">
-                    {biteTypeOptions}
-                </Field>
-                <Field
-                  name="author"
-                  label="Name (Optional)"
+                <Field 
+                  label="Format" 
+                  select="true" 
+                  variant="outlined" 
+                  margin="normal" 
+                  name="format" 
                   component={FormikTextField}
-                  fullWidth
-                />
+                >
+                  {formatTypeOptions}
+                </Field>
                 <DialogActions>
                   <Button onClick={this.props.handleClose}>Cancel</Button>
                   <Button type="submit">Post</Button>

@@ -24,13 +24,11 @@ const Commitment = (props: CommitmentProps) => {
     >
       <CardHeader
         title={props.commitment.author}
-        subheader={"12/03/1995"}
+        subheader={formatTypes[props.commitment.format].displayName}
         avatar={
           <React.Fragment>
             <Avatar src={formatTypes[props.commitment.format].image} />
-            <Typography align="center">
-              <small>{formatTypes[props.commitment.format].displayName}</small>
-            </Typography>
+      
           </React.Fragment>
         }
       />
