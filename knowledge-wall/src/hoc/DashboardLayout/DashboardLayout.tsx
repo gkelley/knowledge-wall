@@ -3,9 +3,9 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,  
+  Typography,
+  Avatar,  
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
 import classes from "./DashboardLayout.module.css";
 
 class DashboardLayout extends Component {
@@ -20,7 +20,7 @@ class DashboardLayout extends Component {
               aria-label="Menu"
               href="/kiosk"
             >
-              <MenuIcon />
+              <Avatar src="https://media.licdn.com/dms/image/C4E0BAQEzidOHxvXPRQ/company-logo_200_200/0?e=2159024400&v=beta&t=REo20Yxby9OchMNIFNGiBQGNjMUUiGpg2XnqukMmkpk" />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               Knowledge Wall
