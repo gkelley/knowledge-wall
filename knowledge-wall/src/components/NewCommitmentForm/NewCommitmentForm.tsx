@@ -6,12 +6,11 @@ import {
   DialogContentText,
   DialogActions,
   Button,
-  InputLabel
 } from "@material-ui/core";
 import * as Yup from "yup";
 import { Form, Formik, Field } from "formik";
 import FormikTextField from "../shared/FormikTextFIeld";
-import firebaseInstance, { GetAllBites } from "../../axios-firebase";
+import firebaseInstance, { GetAllBites, PatchCommitment } from "../../axios-firebase";
 import { commitment, commitmentStatus, formatTypes, bite } from "../../models/models";
 
 const ValidationSchema = Yup.object().shape({
@@ -64,15 +63,9 @@ class NewCommitmentForm extends Component<NewCommitmentFormProps, NewCommitmentS
             status: commitmentStatus.Incomplete 
         }
     }
-
-    firebaseInstance
-      .patch("/bites/" + values.biteId + ".json", formData)
-      .then(response => {
-        this.props.handleClose();
-      })
-      .catch(error => {
-        //Todo
-      });
+    PatchCommitment(formData, values.biteId).then(() => {
+      this.props.handleClose();
+    });
   };
 
   render() {

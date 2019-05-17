@@ -10,7 +10,7 @@ import {
 import * as Yup from "yup";
 import { Form, Formik, Field } from "formik";
 import FormikTextField from "../shared/FormikTextFIeld";
-import firebaseInstance from "../../axios-firebase";
+import firebaseInstance, { PostBite } from "../../axios-firebase";
 import { biteData, biteStatus, biteTypes } from "../../models/models";
 
 const ValidationSchema = Yup.object().shape({
@@ -41,14 +41,10 @@ class NewBiteForm extends Component<NewBiteFormProps> {
         status: biteStatus.Active,
     }
 
-    firebaseInstance
-      .post("/bites.json", formData)
-      .then(response => {
-        this.props.handleClose();
-      })
-      .catch(error => {
-        //Todo
-      });
+    PostBite(formData).then(response => {
+      this.props.handleClose();
+    });
+    
   };
 
   render() {

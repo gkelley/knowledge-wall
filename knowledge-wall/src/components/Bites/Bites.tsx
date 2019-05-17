@@ -39,7 +39,6 @@ const sortBites = ( bites: bite[]) => {
 
 const Bites = (props: BiteProps) => {
   let sortedBites = sortBites(props.bites);
-  console.log("Sorted");
   console.log(sortedBites);
   const bites =
   sortedBites && sortedBites.length > 0
